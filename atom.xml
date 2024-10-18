@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-10-18T07:54:59.851Z</updated>
+  <updated>2024-10-18T09:08:52.287Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,14 +17,25 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>第一篇博客</title>
-    <link href="http://example.com/2024/10/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://example.com/2024/10/18/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</id>
-    <published>2024-10-18T07:54:59.000Z</published>
-    <updated>2024-10-18T07:54:59.851Z</updated>
+    <title>实验一</title>
+    <link href="http://example.com/2024/10/18/%E5%AE%9E%E9%AA%8C-spark/"/>
+    <id>http://example.com/2024/10/18/%E5%AE%9E%E9%AA%8C-spark/</id>
+    <published>2024-10-18T07:54:00.000Z</published>
+    <updated>2024-10-18T09:08:52.287Z</updated>
+    
+    <content type="html"><![CDATA[<p>from pyspark import SparkConf,SparkContext</p><p>conf &#x3D; SparkConf().setMaster(“local”)</p><p>sc &#x3D; SparkContext(conf &#x3D; conf)</p><p>rdd1 &#x3D; sc.textFile(“result_bigdata.csv”).filter(lambda x:x!&#x3D;’ID,course,score’).map(lambda x:x.split(“,”))</p><p>rdd1.collect()</p><p>rdd1.take(5)</p><p>mrdd1 &#x3D; rdd1.map(lambda x:(int(x[0]),int(x[2])))</p><p>mrdd1.collect()</p><p>rdd2 &#x3D; sc.textFile(“result_math.csv”).filter(lambda x:x!&#x3D;’ID,course,score’).map(lambda x:x.split(“,”))</p><p>rdd2.collect()</p><p>mrdd2 &#x3D; rdd1.map(lambda x:(int(x[0]),int(x[2])))</p><p>mrdd2.collect()</p><p>rdd2.take(5)</p><p>jrdd &#x3D; mrdd1.join(mrdd2)</p><p>jrdd.collect()</p><p>sjrdd &#x3D; jrdd.sortBy(lambda x:x[0])</p><p>sjrdd.collect()</p><p>mrdd &#x3D; jrdd.filter(lambda x: x[1][0]&#x3D;&#x3D;100 or x[1][1]&#x3D;&#x3D;100)</p><p>mrdd.collect()</p><p>smrdd &#x3D; jrdd.map(lambda x:(x[0],sum(x[1])))</p><p>smrdd.collect()</p><p>amrdd &#x3D; jrdd.map(lambda x:(x[0],sum(x[1])&#x2F;len(x[1])))</p><p>amrdd.collect()</p><p>rddmax &#x3D; jrdd.map(lambda x:(x[0],max(x[1])))</p><p>rddmax.collect()</p><p>rddmin &#x3D; jrdd.map(lambda x:(x[0],min(x[1])))</p><p>rddmin.collect()</p><p>crdd1 &#x3D; rdd1.map(lambda x:(x[1],int(x[2])))</p><p>crdd1.collect()</p><p>crdd2 &#x3D; rdd2.map(lambda x:(x[1],int(x[2])))</p><p>crdd2.collect()</p><p>urdd &#x3D; crdd1.union(crdd2)</p><p>urdd.collect()</p><p>ssrdd &#x3D; urdd.reduceByKey(lambda x,y : x+y)</p><p>ssrdd.collect()</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;from pyspark import SparkConf,SparkContext&lt;/p&gt;
+&lt;p&gt;conf &amp;#x3D; SparkConf().setMaster(“local”)&lt;/p&gt;
+&lt;p&gt;sc &amp;#x3D; SparkContext(conf &amp;#x3D; co</summary>
+      
     
     
     
+    <category term="spark" scheme="http://example.com/categories/spark/"/>
     
     
   </entry>
